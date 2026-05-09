@@ -1,26 +1,22 @@
 import "./Botao.css";
 import PropTypes from "prop-types";
 
-function Botao({ color, text, onClick }) {
+function Botao({ text, onClick, type = "number", wide = false }) {
   return (
     <button
-      className="
-        botao
-        dark:bg-lightGray dark:bg-opacity-50
-        dark:border-darkGray dark:border-opacity-70
-        "
-      style={{ color: color }}
+      className={`botao-apple ${type} ${wide ? "wide" : ""}`}
       onClick={onClick}
     >
-      {text}
+      <span className="button-text">{text}</span>
     </button>
   );
 }
 
 Botao.propTypes = {
-  color: PropTypes.string,
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  type: PropTypes.oneOf(["number", "operator", "function", "action"]),
+  wide: PropTypes.bool,
 };
 
 export default Botao;
